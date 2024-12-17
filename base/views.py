@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 from django.contrib.auth import login, logout
 from .models import Task
 
@@ -29,7 +29,7 @@ class CustomLogoutView(View):
 
 class RegisterPage(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm 
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
@@ -43,7 +43,6 @@ class RegisterPage(FormView):
         if self.request.user.is_authenticated:
             return redirect('tasks') 
         return super().get(*args, **kwargs)
-    
 
 class SearchView(ListView):
     model = Task
