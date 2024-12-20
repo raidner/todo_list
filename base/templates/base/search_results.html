@@ -1,12 +1,12 @@
 <h2>Search Results</h2>
 <form method="GET" action="{% url 'search' %}">
-    <input type="text" name="search-area" value="{{ search_input }}" />
-    <input type="submit" value="Search" />
+  <input type="text" name="search-area" value="{{ search_input }}" />
+  <input type="submit" value="Search" />
 </form>
 <ul>
-    {% for task in tasks %}
-        <li>{{ task.title }}</li>
-    {% empty %}
-        <p>No tasks found.</p>
-    {% endfor %}
+  {% for task in tasks %}
+  <li>{{ task.title }}</li>
+  {% empty %}
+  <p>No tasks found.</p>
+  {% endfor %}
 </ul>
